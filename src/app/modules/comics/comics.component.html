@@ -1,11 +1,11 @@
 <app-search (searchEvent)="searchForComic($event)"></app-search>
 
 <div class="comics-wrapper" *ngIf="(comics$ | async) as comics; else loader">
-  <app-list-item-card 
+  <app-list-item-card
     *ngFor="let comic of comics.data.results"
     [title]="comic.title"
     [description]="comic.description"
-    [imgSrc]="comic.thumbnail?.path + '.' + comic.thumbnail?.extension"
+    [imgSrc]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
     [itemId]="comic.id"
     [routeUrl]="['comics/' + comic.id]"
   ></app-list-item-card>

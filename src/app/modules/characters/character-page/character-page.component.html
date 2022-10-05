@@ -1,6 +1,6 @@
 <div class="character-page-wrapper" *ngIf="character">
-  <img [src]="character.thumbnail?.path + '.' + character.thumbnail?.extension" [alt]="character.name + '\'s photo' " class="character-image">
-  
+  <img [src]="character.thumbnail.path + '.' + character.thumbnail.extension" [alt]="character.name + '\'s photo' " class="character-image">
+
   <div class="character-content">
     <h1 class="character-name">{{character.name}}</h1>
     <span class="character-description">{{character.description || 'Descrição indisponível'}}</span>

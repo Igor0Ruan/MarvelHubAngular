@@ -1,10 +1,10 @@
 <div class="comic-page-wrapper" *ngIf="comic">
-  <img [src]="comic.thumbnail?.path + '.' + comic.thumbnail?.extension" alt="" class="comic-image">
+  <img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="" class="comic-image">
 
   <div class="comic-content">
     <h1 class="comic-title">{{comic.title}}</h1>
 
-    <a class="marvel-ref" *ngIf="comic.urls.length > 0" [href]="comic.urls[0]?.url" target="_blank">Página do quadrinho no site da Marvel</a>
+    <a class="marvel-ref" *ngIf="comic.urls.length > 0" [href]="comic.urls[0].url" target="_blank">Página do quadrinho no site da Marvel</a>
 
     <span class="comic-description" [innerHTML]="comic.description"></span>
 

@@ -1,5 +1,5 @@
 <div class="event-page-wrapper" *ngIf="event">
-  <img [src]="event.thumbnail?.path + '.' + event.thumbnail?.extension" alt="" class="event-image">
+  <img [src]="event.thumbnail.path + '.' + event.thumbnail.extension" alt="" class="event-image">
 
   <div class="event-content">
     <h1 class="event-title">{{event.title}}</h1>
