@@ -1,6 +1,6 @@
 <app-search (searchEvent)="searchForComic($event)"></app-search>
 
-<div class="comics-wrapper" *ngIf="(comics$ | async) as comics; else loader">
+<div class="comics-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()" *ngIf="(comics$ | async) as comics; else loader">
   <app-list-item-card
     *ngFor="let comic of comics.data.results"
     [title]="comic.title"

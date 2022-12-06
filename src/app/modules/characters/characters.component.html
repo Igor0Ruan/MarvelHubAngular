@@ -1,6 +1,6 @@
 <app-search (searchEvent)="searchForCharacter($event)"></app-search>
 
-<div class="characters-wrapper" *ngIf="(characters$ | async) as characters; else loader">
+<div class="characters-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()" *ngIf="(characters$ | async) as characters; else loader">
   <app-list-item-card
     *ngFor="let character of characters.data.results"
     [title]="character.name"

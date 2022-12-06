@@ -22,6 +22,7 @@ import { EventsComponent } from './modules/events/events.component';
 import { HomeOptionCardComponent } from './modules/home/home-option-card/home-option-card.component';
 import { HomeComponent } from './modules/home/home.component';
 import { SkeletonComponent } from './shared/components/skeleton/skeleton.component';
+import { ScrollTrackerDirectiveDirective } from './shared/directives/scroll-tracker-directive.directive';
 
 registerLocaleData(localeBr, 'pt_BR');
 @NgModule({
@@ -40,7 +41,8 @@ registerLocaleData(localeBr, 'pt_BR');
     EventsPageComponent,
     LoadingComponent,
     SearchComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    ScrollTrackerDirectiveDirective
   ],
   imports: [
     BrowserModule,

@@ -1,24 +1,24 @@
-@use 'main' as *;
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+@use "main" as *;
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap");
 
 * {
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
   font-size: 18px;
   line-height: normal;
   font-weight: 300;
 }
 
-
 .main-content {
   min-height: 100vh;
   position: relative;
+  padding-bottom: 48px;
 
   background-color: $color-background-primary;
   color: $color-font-primary;
 
   main {
-    padding: 1rem 2rem calc(2em + 48px);
-    min-height: calc(100% - 4rem - 48px);
+    padding: 2rem;
+    overflow: hidden;
   }
 }
 
