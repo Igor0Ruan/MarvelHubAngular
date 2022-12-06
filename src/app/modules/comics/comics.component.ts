@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { startWith, switchMap, tap, scan } from 'rxjs/operators';
 import { ComicModel } from 'src/app/shared/models/comic.model';
 import { ResponseModel } from 'src/app/shared/models/response.model';
 import { ComicService } from 'src/app/shared/services/comic.service';
+import QueryUtils from 'src/app/shared/utils/query.utils';
 
 @Component({
   selector: 'app-comics',
@@ -12,6 +14,8 @@ import { ComicService } from 'src/app/shared/services/comic.service';
 export class ComicsComponent implements OnInit {
 
   comics$ = new Observable<ResponseModel<ComicModel>>();
+  loadMore$ = new Subject<URLSearchParams>();
+  currentOffset = 0;
 
   constructor(
     private comicService: ComicService
@@ -19,7 +23,37 @@ export class ComicsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.comics$ = this.comicService.list();
+    this.comics$ = this.loadMore$.pipe(
+      startWith(QueryUtils.buildQueryParams([
+        {
+          key: 'limit',
+          value: '50'
+        }
+      ])),
+      switchMap((queryString) => this.comicService.list(queryString).pipe(
+        tap(response => this.currentOffset += response.data.count)
+      )),
+      scan((acc, curr) => {
+        acc.data.results = acc.data.results.concat(curr.data.results);
+        return acc;
+      })
+    );
+  }
+
+  listMoreItems(): void {
+    const queryString = QueryUtils.buildQueryParams(
+      [
+        {
+          key: 'limit',
+          value: '10'
+        },
+        {
+          key: 'offset',
+          value: this.currentOffset.toString()
+        }
+      ]
+    )
+    this.loadMore$.next(queryString);
   }
 
   searchForComic(search: string): void {

@@ -40,7 +40,7 @@ export class CharactersComponent implements OnInit {
     );
   }
 
-  listMoreItens(): void {
+  listMoreItems(): void {
     const queryString = QueryUtils.buildQueryParams(
       [
         {
