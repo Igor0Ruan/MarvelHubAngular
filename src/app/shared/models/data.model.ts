@@ -3,5 +3,5 @@ export type DataModel<T> = {
   limit: number;
   total: number;
   count: number;
-  results: T[]
+  results: T[];
 };

@@ -9,6 +9,7 @@
     [itemId]="character.id"
     [routeUrl]="['characters/' + character.id]"
   ></app-list-item-card>
+  <button (click)="listMoreItens()">Lista mais!</button>
 </div>
 
 <ng-template #loader>

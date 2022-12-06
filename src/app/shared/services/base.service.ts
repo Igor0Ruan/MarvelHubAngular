@@ -14,8 +14,8 @@ export abstract class BaseService<T> {
     this.baseUrl = `${environment.MARVEL_BASE_URL}/${this.endpoint}`;
   }
 
-  public list(): Observable<ResponseModel<T>> {
-    return this.http.get<any>(this.baseUrl);
+  public list(queryString?: URLSearchParams | null): Observable<ResponseModel<T>> {
+    return this.http.get<any>(`${this.baseUrl}${queryString ? '?' + queryString : ''}`);
   }
 
   public find(id: number): Observable<ResponseModel<T>> {
