@@ -11,13 +11,13 @@
 .main-content {
   min-height: 100vh;
   position: relative;
+  padding-bottom: 48px;
 
   background-color: $color-background-primary;
   color: $color-font-primary;
 
   main {
     padding: 2rem;
-    height: 77vh;
     overflow: hidden;
   }
 }

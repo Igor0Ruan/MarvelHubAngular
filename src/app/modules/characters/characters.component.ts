@@ -24,7 +24,12 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit(): void {
     this.characters$ = this.loadMore$.pipe(
-      startWith(null),
+      startWith(QueryUtils.buildQueryParams([
+        {
+          key: 'limit',
+          value: '50'
+        }
+      ])),
       switchMap((queryString) => this.characterService.list(queryString).pipe(
         tap(response => this.currentOffset += response.data.count)
       )),

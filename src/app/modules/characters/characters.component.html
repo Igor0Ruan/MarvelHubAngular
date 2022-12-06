@@ -1,6 +1,6 @@
 <app-search (searchEvent)="searchForCharacter($event)"></app-search>
 
-<div class="characters-wrapper" *ngIf="(characters$ | async) as characters; else loader">
+<div class="characters-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItens()" *ngIf="(characters$ | async) as characters; else loader">
   <app-list-item-card
     *ngFor="let character of characters.data.results"
     [title]="character.name"
@@ -9,7 +9,6 @@
     [itemId]="character.id"
     [routeUrl]="['characters/' + character.id]"
   ></app-list-item-card>
-  <button (click)="listMoreItens()">Lista mais!</button>
 </div>
 
 <ng-template #loader>

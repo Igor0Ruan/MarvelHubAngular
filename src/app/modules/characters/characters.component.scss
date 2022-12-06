@@ -8,8 +8,6 @@ app-search {
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 0.666rem;
-  overflow-y: scroll;
-  height: calc(100% - 48px);
 
   app-list-item-card {
     height: 112px;
