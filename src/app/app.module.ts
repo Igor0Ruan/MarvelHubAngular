@@ -21,6 +21,7 @@ import { EventsPageComponent } from './modules/events/events-page/events-page.co
 import { EventsComponent } from './modules/events/events.component';
 import { HomeOptionCardComponent } from './modules/home/home-option-card/home-option-card.component';
 import { HomeComponent } from './modules/home/home.component';
+import { SkeletonComponent } from './shared/components/skeleton/skeleton.component';
 
 registerLocaleData(localeBr, 'pt_BR');
 @NgModule({
@@ -38,7 +39,8 @@ registerLocaleData(localeBr, 'pt_BR');
     EventsComponent,
     EventsPageComponent,
     LoadingComponent,
-    SearchComponent
+    SearchComponent,
+    SkeletonComponent
   ],
   imports: [
     BrowserModule,

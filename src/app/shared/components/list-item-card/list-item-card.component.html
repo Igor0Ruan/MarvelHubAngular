@@ -1,7 +1,14 @@
-<div class="item-card" (click)="goToItemPage()">
+
+<ng-container class="comic-page-wrapper" *ngIf="!(loadingShowValues$ | async); else loadingTemplate">
+<div class="item-card" (click)="goToItemPage()" >
   <img [src]="imgSrc">
   <div class="item-data">
     <span class="item-name">{{title}}</span>
     <span class="item-description">{{description}}</span>
   </div>
 </div>
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <app-skeleton></app-skeleton>
+</ng-template>
