@@ -23,7 +23,11 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.characters$ = this.loadMore$.pipe(
+    this.characters$ = this.getInitialItemsList();
+  }
+
+  getInitialItemsList() {
+    return this.loadMore$.pipe(
       startWith(QueryUtils.buildQueryParams([
         {
           key: 'limit',
@@ -57,6 +61,6 @@ export class CharactersComponent implements OnInit {
   }
 
   searchForCharacter(search: string): void {
-    this.characters$ = this.characterService.searchForCharacter(search);
+    this.characters$ = search != '' ? this.characterService.searchForCharacter(search) : this.getInitialItemsList();
   }
 }

@@ -23,7 +23,11 @@ export class ComicsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.comics$ = this.loadMore$.pipe(
+    this.comics$ = this.getInitialItemsList();
+  }
+
+  getInitialItemsList() {
+    return this.loadMore$.pipe(
       startWith(QueryUtils.buildQueryParams([
         {
           key: 'limit',
@@ -57,6 +61,6 @@ export class ComicsComponent implements OnInit {
   }
 
   searchForComic(search: string): void {
-    this.comics$ = this.comicService.searchForComic(search);
+    this.comics$ = search != '' ? this.comicService.searchForComic(search) : this.getInitialItemsList();
   }
 }

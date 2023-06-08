@@ -8,9 +8,15 @@
   background-color: $color-orange;
   border-radius: 5px;
 
-  box-shadow: 4px 4px #555;;
+  transition: ease-out .14s;
 
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 4px 4px #555;
+    transform: translate(-4px, -4px);
+    z-index: inherit;
+  }
 
   img {
     border-top-left-radius: 5px;

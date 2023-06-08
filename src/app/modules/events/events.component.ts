@@ -23,7 +23,11 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.events$ = this.loadMore$.pipe(
+    this.events$ = this.getInitialItemsList();
+  }
+
+  getInitialItemsList() {
+    return this.loadMore$.pipe(
       startWith(QueryUtils.buildQueryParams([
         {
           key: 'limit',
@@ -57,6 +61,6 @@ export class EventsComponent implements OnInit {
   }
 
   searchEventName(titleName: string): void {
-    this.events$ = this.eventService.searchForEventName(titleName);
+    this.events$ = titleName != '' ? this.eventService.searchForEventName(titleName) : this.getInitialItemsList();
   }
 }
