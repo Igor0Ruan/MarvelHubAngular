@@ -15,6 +15,6 @@ export class CharacterService extends BaseService<CharacterModel> {
     const queryString = new URLSearchParams();
     queryString.append('nameStartsWith', characterName);
 
-    return this.httpClient.get<any>(`${this.baseUrl}?${queryString}`);
+    return this.httpClient.get<ResponseModel<CharacterModel>>(`${this.baseUrl}?${queryString}`);
   }
 }

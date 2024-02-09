@@ -15,6 +15,6 @@ export class ComicService extends BaseService<ComicModel>{
     const queryString = new URLSearchParams();
     queryString.append('titleStartsWith', comicTitle);
 
-    return this.httpClient.get<any>(`${this.baseUrl}?${queryString}`);
+    return this.httpClient.get<ResponseModel<ComicModel>>(`${this.baseUrl}?${queryString}`);
   }
 }

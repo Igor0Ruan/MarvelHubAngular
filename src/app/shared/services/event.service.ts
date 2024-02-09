@@ -15,6 +15,6 @@ export class EventService extends BaseService<EventModel> {
     const queryString = new URLSearchParams();
     queryString.append('nameStartsWith', eventTitle);
 
-    return this.httpClient.get<any>(`${this.baseUrl}?${queryString}`);
+    return this.httpClient.get<ResponseModel<EventModel>>(`${this.baseUrl}?${queryString}`);
   }
 }
