@@ -15,3 +15,16 @@ Para iniciar, entre na pasta raiz e instale todas as dependências com o comando
 Depois, inicie com o comando:
 
 `npm start`
+
+## Contribuidores
+
+Muito obrigado por se interessar em contribuir com o projeto!
+
+Aqui estão algumas instruções para realizar alterações no repositório:
+- Realize o Fork deste repositório
+- Crie uma branch no padrão: `feature/add-button`
+- Escreva seu código
+- Commit com a mensagem no padrão: `feat(add-button): Adicionar o botão de heróis`
+- Abra um pull request
+
+Após isso, o Pull Request será revisado e feito o merge assim que verificado que está tudo ok :)
