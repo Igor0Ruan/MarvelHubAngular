@@ -15,11 +15,11 @@ export abstract class BaseService<T> {
   }
 
   public list(queryString?: URLSearchParams | null): Observable<ResponseModel<T>> {
-    return this.http.get<any>(`${this.baseUrl}${queryString ? '?' + queryString : ''}`);
+    return this.http.get<ResponseModel<T>>(`${this.baseUrl}${queryString ? '?' + queryString : ''}`);
   }
 
   public find(id: number): Observable<ResponseModel<T>> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    return this.http.get<ResponseModel<T>>(`${this.baseUrl}/${id}`);
   }
 
 }
