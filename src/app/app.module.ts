@@ -23,6 +23,7 @@ import { HomeOptionCardComponent } from './modules/home/home-option-card/home-op
 import { HomeComponent } from './modules/home/home.component';
 import { SkeletonComponent } from './shared/components/skeleton/skeleton.component';
 import { ScrollTrackerDirectiveDirective } from './shared/directives/scroll-tracker-directive.directive';
+import { CoreService } from './shared/services/core.service';
 
 registerLocaleData(localeBr, 'pt_BR');
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(localeBr, 'pt_BR');
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MarvelInterceptor,
-      multi: true
+      multi: true,
+      deps: [CoreService]
     },
     {
       provide: LOCALE_ID,
