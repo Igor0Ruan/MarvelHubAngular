@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreatorService } from 'src/app/shared/services/creator.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,13 @@ export class HomeComponent implements OnInit {
     events: { url: ['events'] }
   };
 
-  constructor() { }
+  constructor(
+    private creatorService: CreatorService
+  ) { }
 
   ngOnInit(): void {
+    // Getting the first data to fill the footer text
+    this.creatorService.find(1).subscribe();
   }
 
 }

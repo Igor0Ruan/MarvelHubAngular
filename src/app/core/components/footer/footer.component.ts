@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CoreService } from 'src/app/shared/services/core.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  footerText!: String;
 
-  constructor() { }
+
+  constructor(
+    private coreService: CoreService
+  ) { }
 
   ngOnInit(): void {
+    this.coreService.footerText$.subscribe(text => this.footerText = text);
   }
-
 }
