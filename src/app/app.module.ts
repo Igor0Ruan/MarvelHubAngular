@@ -22,7 +22,7 @@ import { EventsComponent } from './modules/events/events.component';
 import { HomeOptionCardComponent } from './modules/home/home-option-card/home-option-card.component';
 import { HomeComponent } from './modules/home/home.component';
 import { SkeletonComponent } from './shared/components/skeleton/skeleton.component';
-import { ScrollTrackerDirectiveDirective } from './shared/directives/scroll-tracker-directive.directive';
+import { ScrollTrackerDirective } from './shared/directives/scroll-tracker.directive';
 import { CoreService } from './shared/services/core.service';
 
 registerLocaleData(localeBr, 'pt_BR');
@@ -43,7 +43,7 @@ registerLocaleData(localeBr, 'pt_BR');
     LoadingComponent,
     SearchComponent,
     SkeletonComponent,
-    ScrollTrackerDirectiveDirective
+    ScrollTrackerDirective
   ],
   imports: [
     BrowserModule,
