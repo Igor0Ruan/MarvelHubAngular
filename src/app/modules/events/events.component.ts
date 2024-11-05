@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY, iif, Observable, Subject } from 'rxjs';
-import { startWith, switchMap, tap, scan, takeWhile, mergeMap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { startWith, switchMap, tap, scan, takeWhile } from 'rxjs/operators';
 import { EventModel } from 'src/app/shared/models/event.model';
 import { ResponseModel } from 'src/app/shared/models/response.model';
 import { EventService } from 'src/app/shared/services/event.service';
