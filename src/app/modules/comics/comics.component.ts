@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { startWith, switchMap, tap, scan } from 'rxjs/operators';
+import { startWith, switchMap, tap, scan, takeWhile } from 'rxjs/operators';
 import { ComicModel } from 'src/app/shared/models/comic.model';
 import { ResponseModel } from 'src/app/shared/models/response.model';
 import { ComicService } from 'src/app/shared/services/comic.service';
@@ -16,6 +16,7 @@ export class ComicsComponent implements OnInit {
   comics$ = new Observable<ResponseModel<ComicModel>>();
   loadMore$ = new Subject<URLSearchParams>();
   currentOffset = 0;
+  totalResults = 0;
 
   constructor(
     private comicService: ComicService
@@ -28,6 +29,7 @@ export class ComicsComponent implements OnInit {
 
   getInitialItemsList() {
     return this.loadMore$.pipe(
+      takeWhile(() => this.currentOffset < this.totalResults),
       startWith(QueryUtils.buildQueryParams([
         {
           key: 'limit',
@@ -35,7 +37,10 @@ export class ComicsComponent implements OnInit {
         }
       ])),
       switchMap((queryString) => this.comicService.list(queryString).pipe(
-        tap(response => this.currentOffset += response.data.count)
+        tap(response => {
+          this.currentOffset += response.data.count;
+          this.totalResults = response.data.total;
+        })
       )),
       scan((acc, curr) => {
         acc.data.results = acc.data.results.concat(curr.data.results);

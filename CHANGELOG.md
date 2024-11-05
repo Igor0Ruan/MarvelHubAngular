@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.5] - 2024-11-05
+### Atualizado
+- Angular 15 > Angular 16
+
+### Refatorado
+- Limitado o número de requisições ao atingir o limite de itens
+- Ajustada a lógica da diretiva ScrollTrackerDirective
+
+### Removido
+- Adicionado arquivo .nvmrc
+
+
 ## [1.5.4] - 2024-04-21
 ### Adicionado
 - Adicionado arquivo .nvmrc
