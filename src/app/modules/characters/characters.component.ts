@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { map, mergeMap, scan, startWith, switchMap, takeWhile, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { scan, startWith, switchMap, takeWhile, tap } from 'rxjs/operators';
 import { CharacterModel } from 'src/app/shared/models/character.model';
 import { ResponseModel } from 'src/app/shared/models/response.model';
 import { CharacterService } from 'src/app/shared/services/character.service';
