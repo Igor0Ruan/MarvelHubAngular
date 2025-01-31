@@ -79,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MarvelHubAngular:build"
+            "buildTarget": "MarvelHubAngular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MarvelHubAngular:build:production"
+              "buildTarget": "MarvelHubAngular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MarvelHubAngular:build"
+            "buildTarget": "MarvelHubAngular:build"
           }
         },
         "test": {
