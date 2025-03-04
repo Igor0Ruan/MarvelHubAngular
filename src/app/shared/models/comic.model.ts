@@ -19,7 +19,7 @@ type TextObjectModel = {
   text: string;
 };
 
-export type ComicModel = {
+export interface ComicModel {
   id: number;
   digitalId: number;
   title: string;

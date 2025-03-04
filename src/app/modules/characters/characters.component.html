@@ -13,7 +13,7 @@
       <app-list-item-card
         [title]="character.name"
         [description]="character.description"
-        [imgSrc]="character.thumbnail.path + '.' + character.thumbnail.extension"
+        [imgSrc]="character.thumbnail | defaultImageSource"
         [itemId]="character.id"
         [routeUrl]="['characters/' + character.id]">
       </app-list-item-card>

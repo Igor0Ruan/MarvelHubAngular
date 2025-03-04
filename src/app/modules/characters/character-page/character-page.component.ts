@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { CharacterModel } from 'src/app/shared/models/character.model';
 import { CharacterService } from 'src/app/shared/services/character.service';
 
@@ -11,7 +12,7 @@ import { CharacterService } from 'src/app/shared/services/character.service';
 })
 export class CharacterPageComponent implements OnInit {
 
-  character: CharacterModel = {} as CharacterModel;
+  character$: Observable<CharacterModel> = new Observable();
 
   constructor(
     private route: ActivatedRoute,
@@ -22,11 +23,10 @@ export class CharacterPageComponent implements OnInit {
     const charId = this.route.snapshot.paramMap.get('id');
 
     if (charId && !isNaN(+charId)) {
-      this.characterService.find(+charId).pipe(
-        take(1)
-      ).subscribe(characterResponse => {
-        this.character = characterResponse.data.results[0];
-      });
+      this.character$ = this.characterService.find(+charId).pipe(
+        take(1),
+        map(response => response.data.results[0])
+      );
     }
   }
 

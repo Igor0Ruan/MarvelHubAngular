@@ -7,6 +7,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { ScrollTrackerDirective } from './directives/scroll-tracker.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DefaultImageSourcePipe } from './pipes/default-image-source.pipe';
 
 
 
@@ -16,13 +17,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoadingComponent,
     SearchComponent,
     SkeletonComponent,
-    ScrollTrackerDirective
+    ScrollTrackerDirective,
+    DefaultImageSourcePipe
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoadingComponent,
     SearchComponent,
     SkeletonComponent,
-    ScrollTrackerDirective
+    ScrollTrackerDirective,
+    DefaultImageSourcePipe
   ]
 })
 export class SharedModule { }

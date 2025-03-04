@@ -1,23 +1,33 @@
-<div class="comic-page-wrapper" *ngIf="comic">
-  <img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="" class="comic-image">
+@if (comic$ | async; as comic) {
+  <div class="comic-page-wrapper">
+    <img [src]="comic.thumbnail | defaultImageSource" alt="" class="comic-image">
 
-  <div class="comic-content">
-    <h1 class="comic-title">{{comic.title}}</h1>
+    <div class="comic-content">
+      <h1 class="comic-title">{{comic.title}}</h1>
 
-    <a class="marvel-ref" *ngIf="comic.urls.length > 0" [href]="comic.urls[0].url" target="_blank">Página do quadrinho no site da Marvel</a>
+      @if (comic.urls.length > 0) {
+        <a  class="marvel-ref" [href]="comic.urls[0].url" target="_blank">Página do quadrinho no site da Marvel</a>
+      }
 
-    <span class="comic-description" [innerHTML]="comic.description"></span>
+      <span class="comic-description" [innerHTML]="comic.description"></span>
 
-    <div class="prices-list">
-      <h3>Preço: </h3>
-      <span *ngFor="let price of comic.prices">$US {{price.price}}</span>
-    </div>
-
-    <div class="previews" *ngIf="comic.images.length > 0">
-      <h3>Previews: </h3>
-      <div class="previews-wrapper">
-        <img *ngFor="let image of comic.images" [src]="image.path + '.' + image.extension" alt="Image preview">
+      <div class="prices-list">
+        <h3>Preço: </h3>
+        @for (price of comic.prices; track $index) {
+          <span>$US {{price.price}}</span>
+        }
       </div>
+
+      @if (comic.images.length > 0) {
+        <div class="previews">
+          <h3>Previews: </h3>
+          <div class="previews-wrapper">
+            @for (image of comic.images; track $index) {
+              <img [src]="image | defaultImageSource" alt="Image preview">
+            }
+          </div>
+        </div>
+      }
     </div>
   </div>
-</div>
+}

@@ -2,7 +2,7 @@ import { ImageModel } from './image.model';
 import { ResourceModel } from './resource.model';
 import { SummaryModel } from './summary.model';
 
-export type StorieModel = {
+export interface StorieModel {
   id:	number;
   title:	string;
   description:	string;
