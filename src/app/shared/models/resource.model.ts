@@ -1,6 +1,6 @@
 import { SummaryModel } from './summary.model';
 
-export type ResourceModel = {
+export interface ResourceModel {
   available: number,
   collectionURI: string,
   items: SummaryModel[],

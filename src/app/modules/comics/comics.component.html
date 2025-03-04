@@ -1,21 +1,24 @@
 <app-search (searchEvent)="searchForComic($event)"></app-search>
 
-<div class="comics-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()" *ngIf="(comics$ | async) as comics; else loader">
-  <div class="empty-result"
-    *ngIf="comics.data.results.length <= 0"
-  >
-    No data found for search
-  </div>
-  <app-list-item-card
-    *ngFor="let comic of comics.data.results"
-    [title]="comic.title"
-    [description]="comic.description"
-    [imgSrc]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
-    [itemId]="comic.id"
-    [routeUrl]="['comics/' + comic.id]"
-  ></app-list-item-card>
-</div>
+@if (comics$ | async; as comics) {
+  <div class="comics-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()">
+    @if(comics.data.results.length <= 0) {
+      <div class="empty-result"
+      >
+        No data found for search
+      </div>
+    }
 
-<ng-template #loader>
+    @for (comic of comics.data.results; track $index) {
+      <app-list-item-card
+        [title]="comic.title"
+        [description]="comic.description"
+        [imgSrc]="comic.thumbnail | defaultImageSource"
+        [itemId]="comic.id"
+        [routeUrl]="['comics/' + comic.id]"
+      ></app-list-item-card>
+    }
+  </div>
+} @else {
   <app-loading></app-loading>
-</ng-template>
+}

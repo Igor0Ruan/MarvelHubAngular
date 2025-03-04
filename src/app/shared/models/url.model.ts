@@ -1,4 +1,4 @@
-export type UrlModel = {
+export interface UrlModel {
   type: string;
   url: string;
 };

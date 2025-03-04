@@ -1,6 +1,6 @@
 import { DataModel } from './data.model';
 
-export type ResponseModel<T> = {
+export interface ResponseModel<T> {
   code: number;
   status: string;
   copyright: string;

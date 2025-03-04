@@ -1,11 +1,14 @@
-<div class="character-page-wrapper" *ngIf="character">
-  <img [src]="character.thumbnail.path + '.' + character.thumbnail.extension" [alt]="character.name + '\'s photo' " class="character-image">
+@if (character$ | async; as character) {
+  <div class="character-page-wrapper">
+    <img [src]="character.thumbnail | defaultImageSource" [alt]="character.name + '\'s photo' " class="character-image">
 
-  <div class="character-content">
-    <h1 class="character-name">{{character.name}}</h1>
-    <span class="character-description">{{character.description || 'Descrição indisponível'}}</span>
+    <div class="character-content">
+      <h1 class="character-name">{{character.name}}</h1>
+      <span class="character-description">{{character.description || 'Descrição indisponível'}}</span>
 
-    <span class="character-modified" *ngIf="character.modified">Última modificação em {{character.modified | date}}</span>
+      @if (character.modified) {
+        <span class="character-modified">Última modificação em {{character.modified | date}}</span>
+      }
+    </div>
   </div>
-</div>
-
+}

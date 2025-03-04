@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { EventModel } from 'src/app/shared/models/event.model';
 import { EventService } from 'src/app/shared/services/event.service';
 
@@ -12,7 +12,7 @@ import { EventService } from 'src/app/shared/services/event.service';
 })
 export class EventsPageComponent implements OnInit, OnDestroy{
 
-  event: EventModel = {} as EventModel;
+  event$: Observable<EventModel> = new Observable();
   routeSubscription: Subscription = new Subscription();
 
   constructor(
@@ -34,11 +34,10 @@ export class EventsPageComponent implements OnInit, OnDestroy{
 
   loadEventData(id: number) {
     if (id && !isNaN(+id)) {
-      this.eventService.find(+id).pipe(
-        take(1)
-      ).subscribe(eventResponse => {
-        this.event = eventResponse.data.results[0];
-      });
+      this.event$ = this.eventService.find(+id).pipe(
+        take(1),
+        map(eventResponse => eventResponse.data.results[0])
+      );
     }
   }
 

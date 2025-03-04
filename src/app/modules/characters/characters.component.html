@@ -1,21 +1,24 @@
 <app-search (searchEvent)="searchForCharacter($event)"></app-search>
 
-<div class="characters-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()" *ngIf="(characters$ | async) as characters; else loader">
-  <div class="empty-result"
-    *ngIf="characters.data.results.length <= 0"
-  >
-    No data found for search
-  </div>
-  <app-list-item-card
-    *ngFor="let character of characters.data.results"
-    [title]="character.name"
-    [description]="character.description"
-    [imgSrc]="character.thumbnail.path + '.' + character.thumbnail.extension"
-    [itemId]="character.id"
-    [routeUrl]="['characters/' + character.id]"
-  ></app-list-item-card>
-</div>
+@if (characters$ | async; as characters) {
+  <div class="characters-wrapper" scrollTrackerDirective (scrollingFinished)="listMoreItems()">
 
-<ng-template #loader>
+    @if(characters.data.results.length <= 0) {
+      <div class="empty-result">
+        No data found for search
+      </div>
+    }
+
+    @for (character of characters.data.results; track $index) {
+      <app-list-item-card
+        [title]="character.name"
+        [description]="character.description"
+        [imgSrc]="character.thumbnail | defaultImageSource"
+        [itemId]="character.id"
+        [routeUrl]="['characters/' + character.id]">
+      </app-list-item-card>
+    }
+  </div>
+} @else {
   <app-loading></app-loading>
-</ng-template>
+}
