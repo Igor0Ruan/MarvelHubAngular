@@ -3,7 +3,7 @@ import { ResourceModel } from './resource.model';
 import { SummaryModel } from './summary.model';
 import { UrlModel } from './url.model';
 
-export type EventModel = {
+export interface EventModel {
   id:	number;
   title:	string;
   description:	string;

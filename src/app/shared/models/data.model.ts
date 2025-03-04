@@ -1,4 +1,4 @@
-export type DataModel<T> = {
+export interface DataModel<T> {
   offset: number;
   limit: number;
   total: number;

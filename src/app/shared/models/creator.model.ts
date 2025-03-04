@@ -2,7 +2,7 @@ import { ImageModel } from './image.model';
 import { ResourceModel } from './resource.model';
 import { UrlModel } from './url.model';
 
-export type CreatorModel = {
+export interface CreatorModel {
   id:	number;
   firstName:	string;
   middleName:	string;

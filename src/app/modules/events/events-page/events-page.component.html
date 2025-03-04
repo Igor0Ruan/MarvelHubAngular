@@ -1,23 +1,30 @@
-<div class="event-page-wrapper" *ngIf="event">
-  <img [src]="event.thumbnail.path + '.' + event.thumbnail.extension" alt="" class="event-image">
+@if(event$ | async; as event) {
+  <div class="event-page-wrapper">
+    <img [src]="event.thumbnail | defaultImageSource" alt="" class="event-image">
 
-  <div class="event-content">
-    <h1 class="event-title">{{event.title}}</h1>
-    <span class="event-description">{{event.description}}</span>
+    <div class="event-content">
+      <h1 class="event-title">{{event.title}}</h1>
+      <span class="event-description">{{event.description}}</span>
 
-    <span class="start-date" *ngIf="event.start">Início do evento em {{event.start | date}}</span>
-    <span class="end-date" *ngIf="event.end">Fim do evento em {{event.end | date}}</span>
+      @if (event.start) { <span class="start-date">Início do evento em {{event.start | date}}</span> }
 
-    <div class="sequence-events">
-      <div class="event" *ngIf="event.previous">
-        <h3>Evento anterior</h3>
-        <button (click)="goToEvent(event.previous.resourceURI)">{{event.previous.name}}</button>
+      @if (event.end) { <span class="end-date">Fim do evento em {{event.end | date}}</span> }
+
+      <div class="sequence-events">
+        @if (event.previous) {
+          <div class="event">
+            <h3>Evento anterior</h3>
+            <button (click)="goToEvent(event.previous.resourceURI)">{{event.previous.name}}</button>
+          </div>
+        }
+        @if (event.next) {
+          <div class="event">
+            <h3>Evento posterior</h3>
+            <button (click)="goToEvent(event.next.resourceURI)">{{event.next.name}}</button>
+          </div>
+        }
       </div>
-      <div class="event" *ngIf="event.next">
-        <h3>Evento posterior</h3>
-        <button (click)="goToEvent(event.next.resourceURI)">{{event.next.name}}</button>
-      </div>
+
     </div>
-
   </div>
-</div>
+}

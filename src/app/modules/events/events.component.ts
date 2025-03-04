@@ -24,6 +24,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('Loading events');
     this.events$ = this.getInitialItemsList();
   }
 
